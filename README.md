@@ -3,7 +3,7 @@ Crawler for Yelp
 
 Introduction:
 
-This is the individual project for EE-551.       Author: Yining Wen
+This is the individual project for EE-551.        Author: Yining Wen
 
 
 Proposal:
@@ -20,7 +20,7 @@ Features:
 •     Data analyze and conclusion
 
 
-TODO
+TODO：
 
 •    Write the code clearly
 •    Using scrapy framework to program this crawler 
