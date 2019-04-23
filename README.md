@@ -1,4 +1,4 @@
-Crawler for Yelp 
+Crawler
 
 
 Introduction:
