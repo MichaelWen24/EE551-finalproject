@@ -6,32 +6,31 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+from fake_useragent import UserAgent
 
-import random
-import base64
-from ..settings import PROXIES
 
-class RandomUserAgent(object):
-  """Randomly rotate user agents based on a list of predefined ones"""
-  def __init__(self, agents):
-    self.agents = agents
-  @classmethod
-  def from_crawler(cls, crawler):
-    return cls(crawler.settings.getlist('USER_AGENTS'))
-  def process_request(self, request, spider):
-    #print "**************************" + random.choice(self.agents)
-    request.headers.setdefault('User-Agent', random.choice(self.agents))
-class ProxyMiddleware(object):
-  def process_request(self, request, spider):
-    proxy = random.choice(PROXIES)
-    if proxy['user_pass'] is not None:
-      request.meta['proxy'] = "http://%s" % proxy['ip_port']
-      encoded_user_pass = base64.encodestring(proxy['user_pass'])
-      request.headers['Proxy-Authorization'] = 'Basic ' + encoded_user_pass
-      print ("**************ProxyMiddleware have pass************" + proxy['ip_port'])
-    else:
-      print ("**************ProxyMiddleware no pass************" + proxy['ip_port'])
-      request.meta['proxy'] = "http://%s" % proxy['ip_port']
+class RandomUserAgentMiddlware(object):
+
+
+    def __init__(self, crawler):
+        super(RandomUserAgentMiddlware, self).__init__()
+        self.ua = UserAgent()
+
+        self.ua_type = crawler.settings.get("RANDOM_UA_TYPE", "random")
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler)
+
+
+    def process_request(self, request, spider):
+        def get_ua():
+            return getattr(self.ua, self.ua_type)
+
+        print
+        get_ua()
+        request.headers.setdefault('User-Agent', get_ua())
+
 
 class YelpcrawlerSpiderMiddleware(object):
     # Not all methods need to be defined. If a method is not defined,
