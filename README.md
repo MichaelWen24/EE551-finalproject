@@ -28,13 +28,14 @@ Features:
 
 How To Run This Program:
 
-•   Having python 3.7 operating environment
-•   Having mongoDB environment(you can also run this program without mongoDB, please see the section "How to Run This Program     Without MongoDB")
-•   Install Scrapy package in your environment by using "pip install scrapy"
-•   Install mongoDB package in your environment by using "pip install pymongo"
-•   cd into the first folder "another"
-•   Run this program bu using "scrapy crawl another" 
-    If everything work functionally, you will see the scrawler data in your mongoDB
+•   Having python 3.7 operating environment  
+•   Having mongoDB environment(you can also run this program without mongoDB, please see the section "How to Run This   Program Without MongoDB")  
+•   Install Scrapy package in your environment by using "pip install scrapy"  
+•   Install mongoDB package in your environment by using "pip install pymongo"  
+•   cd into the first folder "another"  
+•   Run this program bu using "scrapy crawl another"   
+  
+  If everything work functionally, you will see the scrawler data in your mongoDB
     
     
 How to Run This Program Without MongoDB:
@@ -42,8 +43,7 @@ How to Run This Program Without MongoDB:
 
         #    ITEM_PIPELINES = {
         #   'another.pipelines.AnotherPipeline': 300,
-        #}
-        
-•   Run this program by using "scrapy crawl another -o items.json". This method will import the output to a file named            "items.json"
-•   Run this program by using "scrapy crawl another -o items.csv". This method will import the output to a file named            "items.csv"
+        #}  
+•   Run this program by using "scrapy crawl another -o items.json". This method will import the output to a file named            "items.json"  
+•   Run this program by using "scrapy crawl another -o items.csv". This method will import the output to a file named            "items.csv"  
 •    Run this program by using "scrapy crawl another -o items.xml". This method will import the output to a file named            "items.xml"
