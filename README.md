@@ -18,8 +18,7 @@ I was planning to program a crawler for website Yelp, download the restaurant in
 
 Features:
 
-•   Crawler searches information from website
-•   Using Scrapy framework
+•   Crawler searches information from website  •   Using Scrapy framework
 •   Store data in database mongoDB
 •   Store data in ".json/.csv/.xml" type file  
 •   Able to search data page by page automatically
