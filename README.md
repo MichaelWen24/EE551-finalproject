@@ -33,7 +33,7 @@ How To Run This Program:
 •   Having mongoDB environment(you can also run this program without mongoDB, please see the section "How to Run This   Program Without MongoDB")  
 •   Install Scrapy package in your environment by using "pip install scrapy"  
 •   Install mongoDB package in your environment by using "pip install pymongo"  
-•   cd into the first folder "another"  
+•   cd into the folder "another"  
 •   Run this program bu using "scrapy crawl another"   
 
 ----
