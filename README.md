@@ -43,6 +43,9 @@ How To Run This Program:
 ----
 How to Run This Program Without MongoDB:  
 -  
+•   Having python 3.7 operating environment  
+•   Install Scrapy package in your environment by using "pip install scrapy"    
+•   Install mongoDB package in your environment by using "pip install pymongo"  
 •   Please comment the code line 67-69 in file "settings.py" like below
 
         #    ITEM_PIPELINES = {
