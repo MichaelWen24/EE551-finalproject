@@ -39,7 +39,8 @@ How To Run This Program:
   If everything work functionally, you will see the scrawler data in your mongoDB
     
     
-How to Run This Program Without MongoDB:
+How to Run This Program Without MongoDB:  
+  
 •   Please comment the code line 67-69 in file "settings.py" like below
 
         #    ITEM_PIPELINES = {
