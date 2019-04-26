@@ -13,27 +13,64 @@ class YelpSpider(scrapy.Spider):
 
 
     def parse(self, response):
-        pass
+# #---------------------------this part is testing this crawler whether is able to download or not
+#         items = YelpcrawlerItem()
+#         Name = response.xpath(
+#             '//div[contains(@class, "biz-page-header")]//h1[contains(@class, "biz-page-title")]/text()').extract()
+#         Category = response.xpath('//span[@class="category-str-list"]/a/text()').extract()
+#         Rating = response.xpath(
+#             '//div[contains(@class, "biz-page-header")]//div[contains(@class, "biz-rating")]/div[contains(@class, "i-stars")]/@title').extract()
+#         Address = response.css("address::text").extract()
+#         # response.xpath("//div[contains(@class, 'mapbox-address')]//text()").extract()
+#         PhoneNumber = response.css("span.biz-phone::text").extract()
+#
+#         items["Name"] = Name
+#         items["Category"] = Category
+#         items["Rating"] = Rating
+#         items["Address"] = Address
+#         items["PhoneNumber"] = PhoneNumber
+#
+#         yield items
+# #------------------------------------------------------------
+
         for pageurl in response.xpath('//*[@id="wrap"]/div[3]/div[2]/div[2]/div/div[1]/div[1]/div/div[1]/div/div[2]/div/div/a/@href').extract():
              pageurl = response.urljoin(pageurl)
              try:
-                yield scrapy.Request(pageurl, callback=self.allpages())
+                yield scrapy.Request(pageurl, callback=self.allpages)
              except:
                  print("Something wrong with page lists")
 
     def allpages(self, response):
-        pass
+
         for pages in response.xpath('//*[@id="wrap"]/div[3]/div[2]/div[2]/div/div[1]/div[1]/div/ul/li/div/div/div/div/div[2]/div[1]'):
             if pages.xpath('div[1]/div[1]/div[1]/h3/span').extract():
                 continue
             restauranturl = response.urljoin(pages.xpath('div[1]/div[1]/div[1]/h3/a/@href').extract_first())
             try:
-                yield scrapy.Request(restauranturl,meta=restauranturl, callback=self.restaurantdetails())
+                yield scrapy.Request(restauranturl,meta=restauranturl, callback=self.restaurantdetails)
             except:
                 print("Something wrong with pages")
 
 
-    def parse(self, response):
+    def restaurantdetails(self, response):
+
+        items = YelpcrawlerItem()
+        Name = response.xpath(
+            '//div[contains(@class, "biz-page-header")]//h1[contains(@class, "biz-page-title")]/text()').extract()
+        Category = response.xpath('//span[@class="category-str-list"]/a/text()').extract()
+        Rating = response.xpath(
+            '//div[contains(@class, "biz-page-header")]//div[contains(@class, "biz-rating")]/div[contains(@class, "i-stars")]/@title').extract()
+        Address = response.css("address::text").extract()
+        # response.xpath("//div[contains(@class, 'mapbox-address')]//text()").extract()
+        PhoneNumber = response.css("span.biz-phone::text").extract()
+
+        items["Name"] = Name
+        items["Category"] = Category
+        items["Rating"] = Rating
+        items["Address"] = Address
+        items["PhoneNumber"] = PhoneNumber
+
+        yield items
         #restaurant_name_section = response.xpath('//*[starts-with(@class, "biz-page-header-left")]')
         #restaurant_name = restaurant_name_section.xpath('//*/h1/text()').extract()
         ##restaurant_name = restaurant_name_section.xpath('//*/h1/text()').extract_first()
@@ -57,20 +94,3 @@ class YelpSpider(scrapy.Spider):
          #     "Address": restaurant_address,
          #     "PhoneNumber": restaurant_phone
          # }
-        items = YelpcrawlerItem()
-        Name = response.xpath(
-            '//div[contains(@class, "biz-page-header")]//h1[contains(@class, "biz-page-title")]/text()').extract()
-        Category = response.xpath('//span[@class="category-str-list"]/a/text()').extract()
-        Rating = response.xpath(
-            '//div[contains(@class, "biz-page-header")]//div[contains(@class, "biz-rating")]/div[contains(@class, "i-stars")]/@title').extract()
-        Address = response.css("address::text").extract()
-        # response.xpath("//div[contains(@class, 'mapbox-address')]//text()").extract()
-        PhoneNumber = response.css("span.biz-phone::text").extract()
-
-        items["Name"] = Name
-        items["Category"] = Category
-        items["Rating"] = Rating
-        items["Address"] = Address
-        items["PhoneNumber"] = PhoneNumber
-
-        yield items

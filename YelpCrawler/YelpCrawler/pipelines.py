@@ -6,6 +6,19 @@
 # See: https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 
 
+import pymongo
+
+class AnotherPipeline(object):
+
+    def __init__(self):
+        self.conn = pymongo.MongoClient(
+            'localhost',
+            27017
+        )
+        db = self.conn['EE551FinalProject']
+        self.collection = db['project_tb']
+
+
 class YelpcrawlerPipeline(object):
     def process_item(self, item, spider):
         return item

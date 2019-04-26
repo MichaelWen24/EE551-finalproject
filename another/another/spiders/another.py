@@ -39,6 +39,8 @@ class AnotherSpider(scrapy.Spider):
 
             yield items
 
+
+        #after done first page, go to search next page
         nextpage = response.css('li.next a::attr(href)').get()
 
         if nextpage is not None:
