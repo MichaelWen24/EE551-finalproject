@@ -16,9 +16,35 @@ class AnotherSpider(scrapy.Spider):
 
         for quotes in allquotes:
 
-            title = quotes.css("span.text::text").extract()
-            author = quotes.css(".author::text").extract()
-            tag = quotes.css(".tag::text").extract()
+            try:
+                title = quotes.css("span.text::text").extract()
+            except:
+                print("Something Wrong while finding title using css")
+
+            try:
+                author = quotes.css(".author::text").extract()
+            except:
+                print("Something Wrong while finding author using css")
+
+            try:
+                tag = quotes.css(".tag::text").extract()
+            except:
+                print("Something Wrong while finding tag using css")
+
+            # try:
+            #     title = quotes.xpath("//span[@class='text']/text()").extract()
+            # except:
+            #     print("Something Wrong while finding title using Xpath")
+            #
+            # try:
+            #     author = quotes.xpath("//span/small[@class='author']/text()").extract()
+            # except:
+            #     print("Something Wrong while finding author using Xpath")
+            #
+            # try:
+            #     tag = quotes.xpath("//div/a[@class='tag']/text()").extract()
+            # except:
+            #     print("Something Wrong while finding tag using Xpath")
 
             if title:
                 items["title"] = title
@@ -41,7 +67,10 @@ class AnotherSpider(scrapy.Spider):
 
 
         #after done first page, go to search next page
-        nextpage = response.css('li.next a::attr(href)').get()
+        try:
+            nextpage = response.css('li.next a::attr(href)').get()
+        except:
+            print("Something wrong while searching next page")
 
         if nextpage is not None:
             yield response.follow(nextpage, callback = self.parse)
