@@ -34,7 +34,7 @@ How To Run This Program:
 •   Install Scrapy package in your environment by using "pip install scrapy"  
 •   Install mongoDB package in your environment by using "pip install pymongo"  
 •   cd into the folder "another"  
-•   Run this program bu using "scrapy crawl another"   
+•   Run this program by using "scrapy crawl another"   
 
 ----
   If everything work functionally, you will see the scrawler data in your mongoDB
