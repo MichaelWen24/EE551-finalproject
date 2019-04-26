@@ -16,7 +16,7 @@ class AnotherPipeline(object):
             27017
         )
         db = self.conn['EE551FinalProject']
-        self.collection = db['project_tb']
+        self.collection = db['Yelp_tb']
 
 
 class YelpcrawlerPipeline(object):
